@@ -2,6 +2,7 @@ my_settings.py
 
 db_uploader.py
 
+.github
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,pycharm,visualstudiocode,vim,zsh,macos,linux
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,pycharm,visualstudiocode,vim,zsh,macos,linux

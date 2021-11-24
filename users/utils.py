@@ -2,21 +2,18 @@ import jwt
 
 from django.http     import JsonResponse
 
-from django.conf import settings
 from cardoc.settings import (
     ALGORITHMS,
     SECRET_KEY
 )
 from users.models    import User
 
-settings.SE
-
 def login_required(func) :
     def wrapper(self, request, *args, **kwargs) :
         try :
             access_token = request.headers.get('Authorization', None)
             payload      = jwt.decode(access_token, SECRET_KEY, ALGORITHMS)
-            user         = User.objects.get(user_name = payload['username'])
+            user         = User.objects.get(username = payload['username'])
             request.user = user
             
         except jwt.exceptions.DecodeError :

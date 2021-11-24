@@ -64,6 +64,7 @@
 # 4. 모델링
 
 
+![image](https://user-images.githubusercontent.com/88086271/143210573-310ab152-01ae-44aa-862d-47adea3034ff.png)
 
 
 
@@ -71,11 +72,11 @@
 
 # 5. Postman API 테스트
 
-### API 테스트 : https://www.postman.com/cloudy-robot-203980/workspace/humanscape
+### API 테스트 : https://www.postman.com/grey-comet-304334/workspace/cardoc
 
 ### 기본 주소는 배포주소로 되어 있으며, 콜렉션 fork 후 테스트 부탁드립니다.
 
-### API 명세서 : https://documenter.getpostman.com/view/17666851/UVC9hkgs
+### API 명세서 : https://documenter.getpostman.com/view/17716434/UVJYLKfD#9b26edd8-6cb8-40e6-80c0-951098afbbc6
 
 ------
 
@@ -83,53 +84,15 @@
 ## 1. GET /researches/{int:research_id} (특정 임상과제 조회)
 - [성공] path parameter로 임상과제 id값을 받아와서 해당 임상과제 정보를 조회합니다. ex) /researches/
 
-![image](https://user-images.githubusercontent.com/79758688/141976381-1f22e6b4-a8c7-4696-b775-29019912c4d3.png)
 
-- [실패] 만약 존재하지 않는 임상과제 id값을 입력할 경우 404 code를 반환해줍니다.
-
-![image](https://user-images.githubusercontent.com/79758688/141976696-499569b9-922f-443b-aa08-bbc4cfa8e049.png)
-
-## 2. GET /researches (전체 임상과제 리스트 조회)
-- [성공] path parameter를 입력하지 않을 경우 전체 임상과제 리스트를 조회합니다. pagination을 20으로 주어 데이터를 20개씩 조회하도록 하였습니다. 
-
-![image](https://user-images.githubusercontent.com/79758688/141977141-76fe2717-9017-4ae5-9396-74763281f65e.png)
-
-## 3. GET /researches?search=당뇨 (과제명으로 검색)
-- [성공] 임상과제 검색 API를 구현했습니다. 먼저 search라는 변수를 데이터로 받아서 검색 기능을 추가했습니다. 검색 필터는 임의로 '과제명'과 '기관명'으로 설정하였습니다.  '당뇨'라는 필터로 검색 시 '과제명'에 '당뇨'가 포함되는 데이터들이 조회됩니다.
-
-![image](https://user-images.githubusercontent.com/79758688/141977978-cde01a72-4558-4cb3-a36e-f1b82add3fd6.png)
-
-## 4. GET /researches?search=서울성모 (기관명으로 검색)
-- '서울성모' 라는 필터로 검색시 '연구기관'에 '서울성모'가 포함된 데이터들이 조회됩니다. 
-
-![image](https://user-images.githubusercontent.com/79758688/141978271-071bad28-b300-4bcd-ad6b-0e8f2dc5aea1.png)
-
-## 5. Batch task
-
-![image](https://user-images.githubusercontent.com/75020336/142137760-f1dae3b4-89f1-4f46-ab02-fb81ab3dc2ef.png)
-
-
-- 계속해서 업데이트가 필요한 코드는 django에서 지원해주는 django-crontab을 통하여 batch task를 구현하였습니다.
-
-```
-CRONJOBS = [
-    ('* */4 * * *', 'researches.cron.batch_task', '>> ~/humanscape/cron.log 2>&1'),
-]
-```
-- 4시간 마다 researches app에 있는 cron.py파일의 batch_task함수가 실행되고 에러 로그는 cron.log에 기록되도록 하였습니다.
-
-## 5-1. 기능
-- 외부 api를 가져오면 기존에 있는 데이터베이스의 값과 비교하여 새로 들어온 연구는 추가해주었습니다.
-- 변경사항이 없는 연구는 값이 들어와도 변하지 않고 변경사항이 있는 정보는 데이터베이스에서 업데이트 해주고 update_at시간을 주었습니다.
 - 
 ------
 
 # 7. UnitTest 결과
 
-<img width="779" alt="스크린샷 2021-11-16 오후 6 39 48" src="https://user-images.githubusercontent.com/79758688/141960630-899f8ebb-d097-4380-9812-c1db2983e230.png">
-
+![image](https://user-images.githubusercontent.com/88086271/143210801-2ecc3265-bbdc-4876-9173-aee6ae02de8f.png)
 
 # 8 . Reference
 
-이 프로젝트는 원티드x위코드 백엔드 프리온보딩 과제 일환으로 휴먼스케이프(humanscape)에서 출제한 과제를 기반으로 만들었습니다. 감사합니다.
+이 프로젝트는 원티드x위코드 백엔드 프리온보딩 과제 일환으로 카닥에서 출제한 과제를 기반으로 만들었습니다. 감사합니다.
 
